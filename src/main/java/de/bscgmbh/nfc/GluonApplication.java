@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.gluonhq.charm.glisten.license.License;
 
-@License(key="8af73b89-edf9-41b6-a8de-ab1b8b732e4a")
+
 public class GluonApplication extends MobileApplication {
 
     @Override
