@@ -1,5 +1,8 @@
 package de.bscgmbh.nfc;
 
+
+import com.gluonhq.attach.util.Constants;
+import com.gluonhq.attach.util.Util;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import javafx.scene.Scene;
@@ -23,6 +26,11 @@ public class GluonApplication extends MobileApplication {
     }
 
     public static void main(String args[]) {
+
+        System.setProperty(Constants.ATTACH_DEBUG, "true");
+      	boolean wtf = Util.DEBUG;
+      	System.out.println("wtf " + wtf);
+        
         launch(args);
     }
 }

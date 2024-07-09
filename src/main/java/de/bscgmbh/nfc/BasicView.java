@@ -1,5 +1,7 @@
 package de.bscgmbh.nfc;
 
+import com.gluonhq.attach.util.Constants;
+import com.gluonhq.attach.util.Util;
 import com.gluonhq.attachextended.log.LogService;
 import com.gluonhq.attachextended.nfc.NfcService;
 import com.gluonhq.charm.glisten.control.AppBar;
@@ -23,6 +25,7 @@ public class BasicView extends View {
         Button button = new Button("Change the World!");
         button.setGraphic(new Icon(MaterialDesignIcon.LANGUAGE));
         button.setOnAction(e -> {
+        	
         	
         	StringBuilder sb = new StringBuilder();
         	//.append("LogService   isEmpty? " + LogService.create().isEmpty());
