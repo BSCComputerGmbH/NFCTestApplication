@@ -46,7 +46,12 @@ public class BasicView extends View {
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) 
 					{
-						label.setText(newValue);
+						if(newValue != null && !newValue.equals(""))
+						{
+							label.setText(newValue);
+							service.getResultObject().set("");
+						}
+						
 						
 						
 					}
