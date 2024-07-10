@@ -1,13 +1,14 @@
 package de.bscgmbh.nfc;
 
-import com.gluonhq.attach.util.Constants;
-import com.gluonhq.attach.util.Util;
-import com.gluonhq.attachextended.log.LogService;
+
 import com.gluonhq.attachextended.nfc.NfcService;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.control.Icon;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,6 +40,18 @@ public class BasicView extends View {
         	
         	NfcService.create().ifPresent(service -> {
         		service.doConnect("testConnectToSensor");
+        		
+        		service.getResultObject().addListener(new ChangeListener<String>() {
+
+					@Override
+					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) 
+					{
+						label.setText(newValue);
+						
+						
+					}
+        			
+        		});
         	});
         
         
