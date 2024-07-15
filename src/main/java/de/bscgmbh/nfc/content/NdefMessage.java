@@ -25,6 +25,26 @@ public class NdefMessage
 		this.ndefRecordList = ndefRecordList;
 	}
 	
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("NdefMessage: ");
+		sb.append("Description " + getDescription());
+		sb.append(" ");
+		sb.append("NdefRecordList size " + ndefRecordList.size());
+		for(int i = 0; i < ndefRecordList.size(); i++)
+		{
+			sb.append(ndefRecordList.get(i).toString());
+		}
+		return sb.toString();
+	}
+	
+	
+	public static NdefMessage createNdefMessageObject(String receivedMessage)
+	{
+		return NdefMessage.createNdefMessageObject(NdefMessage.getGenPairListFromReceivedMessage(receivedMessage));
+	}
 	
 	/**
 	 * divide the tagged receivedMessage in key and content

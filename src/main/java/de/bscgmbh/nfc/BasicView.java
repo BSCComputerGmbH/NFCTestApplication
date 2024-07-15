@@ -7,6 +7,7 @@ import com.gluonhq.charm.glisten.control.Icon;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
+import de.bscgmbh.nfc.content.NdefMessage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
@@ -46,9 +47,24 @@ public class BasicView extends View {
 					@Override
 					public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) 
 					{
+						//got the new result
 						if(newValue != null && !newValue.equals(""))
 						{
-							label.setText(newValue);
+							//label.setText(newValue);
+							//newValue ist tagged
+							
+							//divide the tags
+							NdefMessage ndefMessage = NdefMessage.createNdefMessageObject(newValue);
+							if(ndefMessage != null)
+							{
+								label.setText(ndefMessage.toString());
+								
+							}
+							
+							
+							
+							
+							//reset the result object 
 							service.getResultObject().set("");
 						}
 						
