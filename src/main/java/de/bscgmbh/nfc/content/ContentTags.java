@@ -23,6 +23,10 @@ public enum ContentTags
 	NdefRecord_payload("<ndefrecord#payload>", "</ndefrecord#payload>"),
 	NdefRecord_mimeType("<ndefrecord#mimeType>", "</ndefrecord#mimeType>"),
 
+
+	SimpleRequestCall("<simpleRequestCall>", "</simpleRequestCall>"),
+	SequenceRequestCall("<sequenceRequestCall>", "</sequenceRequestCall>"),
+	
 	;
 	
 	private String startTag, endTag;

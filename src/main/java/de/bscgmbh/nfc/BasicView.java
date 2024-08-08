@@ -7,6 +7,7 @@ import com.gluonhq.charm.glisten.control.Icon;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
+import de.bscgmbh.nfc.content.ContentTags;
 import de.bscgmbh.nfc.content.NdefMessage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,17 +31,19 @@ public class BasicView extends View {
         	
         	
         	StringBuilder sb = new StringBuilder();
-        	//.append("LogService   isEmpty? " + LogService.create().isEmpty());
-        	//sb.append("\n");
-        	//sb.append("ShareService isEmpty? " + ShareService.create().isEmpty());
-        	//sb.append("\n");
         	sb.append("NFCService   isEmpty? " + NfcService.create().isEmpty());
         	sb.append("\n");
         	label.setText(sb.toString());
         	
+        	//TODO anstatt testConnectToSensor ist dann das zu setzen was abgearbeitet werden soll.
+        	
+        	//Soll eine Sequenz abgearbeitet werden
+        	
+        	//Oder ein simpler Zugriff erfolgen einfach alles NDF Record infos weitergeben
+        	
         	
         	NfcService.create().ifPresent(service -> {
-        		service.doConnect("testConnectToSensor");
+        		service.doConnect(ContentTags.SimpleRequestCall.getStartTag() + ContentTags.SimpleRequestCall.getEndTag());
         		
         		service.getResultObject().addListener(new ChangeListener<String>() {
 

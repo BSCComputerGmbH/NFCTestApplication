@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class TestSplitKlasse {
 
-	private static boolean firstTry = false;
+	private static boolean firstTry = true;
 	
 	
 	
