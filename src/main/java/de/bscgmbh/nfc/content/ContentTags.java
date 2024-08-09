@@ -31,6 +31,8 @@ public enum ContentTags
 	
 	private String startTag, endTag;
 	
+	public static final String OPTIONAL_DATA_KEY = "OPTIONAL_DATA";
+	
 	private ContentTags(String startTag, String endTag)
 	{
 		this.startTag = startTag;

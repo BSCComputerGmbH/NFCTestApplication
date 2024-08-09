@@ -1,6 +1,5 @@
 package de.bscgmbh.nfc.content;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
