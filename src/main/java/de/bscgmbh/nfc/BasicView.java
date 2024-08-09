@@ -55,7 +55,7 @@ public class BasicView extends View {
         		}
         		else
         		{
-        			//TODO 
+        			//TODO Montag 
         			
         			StringBuilder sequenceRequest = new StringBuilder();
         			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
