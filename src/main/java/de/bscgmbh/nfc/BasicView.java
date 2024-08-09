@@ -61,16 +61,23 @@ public class BasicView extends View {
         			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
         			sequenceRequest.append(ContentTags.SequenceStart.getStartTag());
         			sequenceRequest.append(ContentTags.Request.getStartTag());
-        			
+        			//wass gesendet wird
+        			sequenceRequest.append("0x1B0000E500");
         			sequenceRequest.append(ContentTags.Request.getEndTag());
         			sequenceRequest.append(ContentTags.Response.getStartTag());
-        			
+        			//was erwartet wird
+        			sequenceRequest.append("0x0000");
         			sequenceRequest.append(ContentTags.Response.getEndTag());
         			sequenceRequest.append(ContentTags.SequenceStart.getEndTag());
+        			
+        			//TODO vielleicht anstatt start tag doch eher gleich auf sequence mit einer fortlaufenden ID
+        			
+        			
+        			
+        			
+        			
+        			
         			sequenceRequest.append(ContentTags.SequenceRequestCall.getEndTag());
-        			
-        			
-        			
         			service.doConnect(sequenceRequest.toString());
         			
         		}
