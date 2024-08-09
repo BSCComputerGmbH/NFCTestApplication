@@ -25,7 +25,12 @@ public enum ContentTags
 
 
 	SimpleRequestCall("<simpleRequestCall>", "</simpleRequestCall>"),
+	
 	SequenceRequestCall("<sequenceRequestCall>", "</sequenceRequestCall>"),
+	SequenceStart("<sequenceStart>", "</sequenceRequestStart>"),
+	
+	Request("<request>", "</request>"),
+	Response("<response>", "</response>"),
 	
 	;
 	

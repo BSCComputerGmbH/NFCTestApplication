@@ -18,6 +18,11 @@ import javafx.scene.layout.VBox;
 
 public class BasicView extends View {
 
+	/**
+	 * simple flag to switch the request call at the nfc sensor
+	 */
+	private static boolean isSimpleRequestCall = true;
+	
     public BasicView() {
         
     	
@@ -43,7 +48,35 @@ public class BasicView extends View {
         	
         	
         	NfcService.create().ifPresent(service -> {
-        		service.doConnect(ContentTags.SimpleRequestCall.getStartTag() + ContentTags.SimpleRequestCall.getEndTag());
+        		
+        		if(isSimpleRequestCall)
+        		{
+        			service.doConnect(ContentTags.SimpleRequestCall.getStartTag() + ContentTags.SimpleRequestCall.getEndTag());
+        		}
+        		else
+        		{
+        			//TODO 
+        			
+        			StringBuilder sequenceRequest = new StringBuilder();
+        			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
+        			sequenceRequest.append(ContentTags.SequenceStart.getStartTag());
+        			sequenceRequest.append(ContentTags.Request.getStartTag());
+        			
+        			sequenceRequest.append(ContentTags.Request.getEndTag());
+        			sequenceRequest.append(ContentTags.Response.getStartTag());
+        			
+        			sequenceRequest.append(ContentTags.Response.getEndTag());
+        			sequenceRequest.append(ContentTags.SequenceStart.getEndTag());
+        			sequenceRequest.append(ContentTags.SequenceRequestCall.getEndTag());
+        			
+        			
+        			
+        			service.doConnect(sequenceRequest.toString());
+        			
+        		}
+        		
+        		
+        		
         		
         		service.getResultObject().addListener(new ChangeListener<String>() {
 
