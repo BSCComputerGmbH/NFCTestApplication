@@ -21,7 +21,7 @@ public class BasicView extends View {
 	/**
 	 * simple flag to switch the request call at the nfc sensor
 	 */
-	private static boolean isSimpleRequestCall = true;
+	private static boolean isSimpleRequestCall = false;
 	
     public BasicView() {
         

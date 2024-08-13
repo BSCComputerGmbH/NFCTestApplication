@@ -11,7 +11,7 @@ public class TestSplitRequest
 		
 		
 		
-		String sampleRequest = getSampleRequest();
+		String sampleRequest = getExampleRequest();
 		System.out.println("completeRequest " + sampleRequest);
 		
 		//jetzt die Testzerlegung
@@ -92,7 +92,11 @@ public class TestSplitRequest
 		return null;
 	}
 
-	private static String getSampleRequest() {
+	/**
+	 * build example 
+	 * @return
+	 */
+	private static String getExampleRequest() {
 		StringBuilder sequenceRequest = new StringBuilder();
 		sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
 		sequenceRequest.append(ContentTags.getSequenceStartTag(0));
