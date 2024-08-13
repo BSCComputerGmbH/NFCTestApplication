@@ -23,11 +23,6 @@ public class TestSplitKlasse {
 		{
 			buildSecondExmaple();
 		}
-		
-		
-		
-		
-		
 	}
 	
 	private static void buildSecondExmaple() 

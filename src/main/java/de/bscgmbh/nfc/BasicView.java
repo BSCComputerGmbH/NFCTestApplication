@@ -59,7 +59,7 @@ public class BasicView extends View {
         			
         			StringBuilder sequenceRequest = new StringBuilder();
         			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
-        			sequenceRequest.append(ContentTags.SequenceStart.getStartTag());
+        			sequenceRequest.append(ContentTags.getSequenceStartTag(0));
         			sequenceRequest.append(ContentTags.Request.getStartTag());
         			//wass gesendet wird
         			sequenceRequest.append("0x1B0000E500");
@@ -68,21 +68,29 @@ public class BasicView extends View {
         			//was erwartet wird
         			sequenceRequest.append("0x0000");
         			sequenceRequest.append(ContentTags.Response.getEndTag());
-        			sequenceRequest.append(ContentTags.SequenceStart.getEndTag());
+        			sequenceRequest.append(ContentTags.getSequenceEndTag(0));
+        			
         			
         			//TODO vielleicht anstatt start tag doch eher gleich auf sequence mit einer fortlaufenden ID
+        			sequenceRequest.append(ContentTags.getSequenceStartTag(1));
+        			sequenceRequest.append(ContentTags.Request.getStartTag());
+        			sequenceRequest.append("0x3049");
+        			sequenceRequest.append(ContentTags.Request.getEndTag());
         			
+        			sequenceRequest.append(ContentTags.Response.getStartTag());
+        			//empty alles was kommt wird entgegen genommen.
+        			sequenceRequest.append("");
+        			sequenceRequest.append(ContentTags.Response.getEndTag());
         			
-        			
-        			
-        			
+        			sequenceRequest.append(ContentTags.getSequenceEndTag(1));
         			
         			sequenceRequest.append(ContentTags.SequenceRequestCall.getEndTag());
+        			
+        			
         			service.doConnect(sequenceRequest.toString());
         			
+        			
         		}
-        		
-        		
         		
         		
         		service.getResultObject().addListener(new ChangeListener<String>() {
@@ -101,12 +109,7 @@ public class BasicView extends View {
 							if(ndefMessage != null)
 							{
 								label.setText(ndefMessage.toString());
-								
 							}
-							
-							
-							
-							
 							//reset the result object 
 							service.getResultObject().set("");
 						}
@@ -134,6 +137,39 @@ public class BasicView extends View {
         appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> System.out.println("Menu")));
         appBar.setTitleText("Basic View");
         appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> System.out.println("Search")));
+    }
+    
+    public static void main(String[] args)
+    {
+    	StringBuilder sequenceRequest = new StringBuilder();
+		sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
+		sequenceRequest.append(ContentTags.getSequenceStartTag(0));
+		sequenceRequest.append(ContentTags.Request.getStartTag());
+		//wass gesendet wird
+		sequenceRequest.append("0x1B0000E500");
+		sequenceRequest.append(ContentTags.Request.getEndTag());
+		sequenceRequest.append(ContentTags.Response.getStartTag());
+		//was erwartet wird
+		sequenceRequest.append("0x0000");
+		sequenceRequest.append(ContentTags.Response.getEndTag());
+		sequenceRequest.append(ContentTags.getSequenceEndTag(0));
+		
+		
+		//TODO vielleicht anstatt start tag doch eher gleich auf sequence mit einer fortlaufenden ID
+		sequenceRequest.append(ContentTags.getSequenceStartTag(1));
+		sequenceRequest.append(ContentTags.Request.getStartTag());
+		sequenceRequest.append("0x3049");
+		sequenceRequest.append(ContentTags.Request.getEndTag());
+		
+		sequenceRequest.append(ContentTags.Response.getStartTag());
+		//empty alles was kommt wird entgegen genommen.
+		sequenceRequest.append("");
+		sequenceRequest.append(ContentTags.Response.getEndTag());
+		
+		sequenceRequest.append(ContentTags.getSequenceEndTag(1));
+		
+		sequenceRequest.append(ContentTags.SequenceRequestCall.getEndTag());
+		System.out.println("sequenceRequest " + sequenceRequest.toString());
     }
     
 }
