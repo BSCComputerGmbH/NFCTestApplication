@@ -1,96 +1,24 @@
 package de.bscgmbh.nfc.content;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestSplitRequest 
 {
 	public static void main(String[] args) 
 	{
-		List<GenericPairVO<? extends ARequest, ? extends AResponse>> genericPairList = new ArrayList<GenericPairVO<? extends ARequest, ? extends AResponse>> ();
+		String exampleRequest = getExampleRequest();
+		System.out.println("completeRequest " + exampleRequest);
 		
-		
-		
-		String sampleRequest = getExampleRequest();
-		System.out.println("completeRequest " + sampleRequest);
-		
-		//jetzt die Testzerlegung
-		
-		//1. entfernen des SequenceReqeustCall
-		int startIndex = sampleRequest.indexOf(ContentTags.SequenceRequestCall.getStartTag());
-		int endIndex = sampleRequest.indexOf(ContentTags.SequenceRequestCall.getEndTag());
-		String contentOfTag = sampleRequest.substring(ContentTags.SequenceRequestCall.getStartTag().length(), endIndex);
-		System.out.println("contentOfTag " + contentOfTag);
-		
-		//2. alle Sequenzen in einer einer Liste packen GenericPair<Request, Response>
-		int sequenceIndex = 0;
-		boolean hasMore = true;
-		do
-		{
-			startIndex = contentOfTag.indexOf(ContentTags.getSequenceStartTag(sequenceIndex));
-			endIndex = contentOfTag.indexOf(ContentTags.getSequenceEndTag(sequenceIndex));
-			if(startIndex == -1 || endIndex == -1)
-			{
-				hasMore = false;
-				break;
-			}
-			
-			//request/response content
-			String contentOfSequence = contentOfTag.substring(startIndex + ContentTags.getSequenceStartTag(sequenceIndex).length(), endIndex);
-			
-			//substring contentOfSequence in request and response
-			int startIndexReq = contentOfSequence.indexOf(ContentTags.Request.getStartTag());
-			int endIndexReq = contentOfSequence.indexOf(ContentTags.Request.getEndTag());
-			
-			int startIndexResp = contentOfSequence.indexOf(ContentTags.Response.getStartTag());
-			int endIndexResp = contentOfSequence.indexOf(ContentTags.Response.getEndTag());
-			
-			String contentOfRequest = contentOfSequence.substring(startIndexReq + ContentTags.Request.getStartTag().length(), endIndexReq);
-			System.out.println("contentOfRequest " + contentOfRequest);
-			
-			String contentOfResponse = contentOfSequence.substring(startIndexResp + ContentTags.Response.getStartTag().length(), endIndexResp);
-			System.out.println("contentOfResponse " + contentOfResponse);
-			
-			genericPairList.add(createGenericPair(contentOfRequest, contentOfResponse));
-			
-			sequenceIndex++;
-		}
-		while(hasMore);
+		List<GenericPairVO<? extends ARequest, ? extends AResponse>> genericPairList = RequestResponseDivier.getGenericPairList(exampleRequest);
 		
 		for(int i = 0; i < genericPairList.size(); i++)
 		{
 			System.out.println("left  " + ((ByteArrayRequest)genericPairList.get(i).getLeft()).getRequest().length);
 			System.out.println("right " + ((ByteArrayResponse)genericPairList.get(i).getRight()).getResponse().length);
 		}
-		
-		
-		//3. Abarbeitung aller Sequenzen
-		
-		
-		//4. Alles zurückgeben was empfangen wurde
-		//List<GenericPairVO<?, ?>> requestList = 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
-
-	private static GenericPairVO<? extends ARequest, ? extends AResponse> createGenericPair(String contentOfRequest, String contentOfResponse) 
-	{
-		if(contentOfRequest.startsWith("0x"))
-		{
-			return new GenericPairVO<ByteArrayRequest, ByteArrayResponse>(new ByteArrayRequest(contentOfRequest), new ByteArrayResponse(contentOfResponse));
-		}
-		return null;
-	}
+	
+	
 
 	/**
 	 * build example 

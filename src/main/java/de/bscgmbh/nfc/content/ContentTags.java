@@ -28,9 +28,6 @@ public enum ContentTags
 	
 	SequenceRequestCall("<sequenceRequestCall>", "</sequenceRequestCall>"),
 	
-	//TODO raus
-	//SequenceStart("<sequenceStart>", "</sequenceRequestStart>"),
-	
 	Request("<request>", "</request>"),
 	Response("<response>", "</response>"),
 	
