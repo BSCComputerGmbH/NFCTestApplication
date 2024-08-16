@@ -1,6 +1,9 @@
 package de.bscgmbh.nfc.content;
 
+import java.util.Arrays;
 import java.util.List;
+
+
 
 public class TestSplitRequest 
 {
@@ -16,6 +19,13 @@ public class TestSplitRequest
 			System.out.println("left  " + ((ByteArrayRequest)genericPairList.get(i).getLeft()).getRequest().length);
 			System.out.println("right " + ((ByteArrayResponse)genericPairList.get(i).getRight()).getResponse().length);
 		}
+		
+		byte[] responseFromSensor = new byte[] {0x00, 0x01};
+		
+		boolean testVergleich = ((ByteArrayResponse)genericPairList.get(0).getRight()).isExpectedResponse(ByteArrayResponse.toObjectArray(responseFromSensor));
+		System.out.println("expectedResponse " + testVergleich);
+		
+		
 	}
 	
 	

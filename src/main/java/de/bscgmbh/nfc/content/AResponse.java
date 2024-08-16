@@ -1,6 +1,6 @@
 package de.bscgmbh.nfc.content;
 
-public abstract class AResponse 
+public abstract class AResponse<T> 
 {
 
 	protected String expectedResponseString;
@@ -10,4 +10,7 @@ public abstract class AResponse
 		this.expectedResponseString = expectedResponseString;
 	}
 
+
+	public abstract boolean isExpectedResponse(T responseFromSensor);
+	
 }
