@@ -112,7 +112,7 @@ public class BasicView extends View {
 							}
 							else
 							{
-								label.setText("No NdefMessage: " + newValue);
+								label.setText("No NdefMessage, other way: " + newValue);
 							}
 							//reset the result object 
 							service.getResultObject().set("");
