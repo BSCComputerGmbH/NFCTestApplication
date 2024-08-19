@@ -175,10 +175,6 @@ public class BasicView extends View {
         	
         });
         
-        
-        
-        
-        
         VBox controls = new VBox(15.0, label, button, sequenceButton, detail);
         controls.setAlignment(Pos.CENTER);
         
