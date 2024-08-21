@@ -12,6 +12,10 @@ public class TestSplitRequest
 		String exampleRequest = getExampleRequest();
 		System.out.println("completeRequest " + exampleRequest);
 		
+		TagTechnologyConstants tagTechnology = TagTechnologyConstants.getTagTechnology(exampleRequest);
+		System.out.println("tagTechnology: " + tagTechnology);
+
+	
 		List<GenericPairVO<? extends ARequest, ? extends AResponse>> genericPairList = RequestResponseDivier.getGenericPairList(exampleRequest);
 		
 		for(int i = 0; i < genericPairList.size(); i++)
@@ -35,8 +39,20 @@ public class TestSplitRequest
 	 * @return
 	 */
 	private static String getExampleRequest() {
+		
+		//TODO hier fehlt der NFC Coonect der verwendet werden soll z.B. MilfaireUltralight
+		
 		StringBuilder sequenceRequest = new StringBuilder();
 		sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
+		
+		sequenceRequest.append(ContentTags.IO_OPERATIONS.getStartTag());
+		//Enum? the nfc tag names are different between Android and ios
+		sequenceRequest.append(TagTechnologyConstants.MifareUltralight.getNFCTag());
+		sequenceRequest.append(ContentTags.IO_OPERATIONS.getEndTag());
+		
+		
+		
+		
 		sequenceRequest.append(ContentTags.getSequenceStartTag(0));
 		sequenceRequest.append(ContentTags.Request.getStartTag());
 		//wass gesendet wird

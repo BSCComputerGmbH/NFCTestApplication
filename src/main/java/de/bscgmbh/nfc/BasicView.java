@@ -9,6 +9,7 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
 import de.bscgmbh.nfc.content.ContentTags;
 import de.bscgmbh.nfc.content.NdefMessage;
+import de.bscgmbh.nfc.content.TagTechnologyConstants;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
@@ -132,6 +133,13 @@ public class BasicView extends View {
         		//test message to send to the Sensor
         		StringBuilder sequenceRequest = new StringBuilder();
     			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
+    			
+    			//which io operation to use
+    			sequenceRequest.append(ContentTags.IO_OPERATIONS.getStartTag());
+    			//Enum? the nfc tag names are different between Android and ios
+    			sequenceRequest.append(TagTechnologyConstants.MifareUltralight.getNFCTag());
+    			sequenceRequest.append(ContentTags.IO_OPERATIONS.getEndTag());
+    			
     			sequenceRequest.append(ContentTags.getSequenceStartTag(0));
     			sequenceRequest.append(ContentTags.Request.getStartTag());
     			//wass gesendet wird
