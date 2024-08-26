@@ -71,17 +71,6 @@ public class BasicView extends View {
 					{
 						detail.setText(ndefMessage.toString());
 					}
-					
-//					//divide the tags
-//					NdefMessage ndefMessage = NdefMessage.createNdefMessageObject(newValue);
-//					if(ndefMessage == null)
-//					{
-//						detail.setText("No NdefMessage, other way: " + newValue);
-//					}
-//					else
-//					{
-//						//TODO error?
-//					}
 				}
 			}
 		};
@@ -173,12 +162,7 @@ public class BasicView extends View {
     			
     			
     			service.doConnect(sequenceRequest.toString());
-    		
-    			
-    			
-        		
-        		
-        		
+    	
         	});
         	
         	

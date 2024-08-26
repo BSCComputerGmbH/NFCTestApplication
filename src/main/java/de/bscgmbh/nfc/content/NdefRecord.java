@@ -93,7 +93,7 @@ public class NdefRecord
 	}
 	
 
-	private boolean isResponseContentFilled() 
+	public boolean isResponseContentFilled() 
 	{
 		if(response_content != null && response_content.length() > 0)
 			return true;
