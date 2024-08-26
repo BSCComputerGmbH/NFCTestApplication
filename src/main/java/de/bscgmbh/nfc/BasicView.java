@@ -66,18 +66,22 @@ public class BasicView extends View {
 				//got the new result
 				if(newValue != null && !newValue.equals(""))
 				{
-					
-					
-					//divide the tags
 					NdefMessage ndefMessage = NdefMessage.createNdefMessageObject(newValue);
-					if(ndefMessage == null)
+					if(ndefMessage != null)
 					{
-						detail.setText("No NdefMessage, other way: " + newValue);
+						detail.setText(ndefMessage.toString());
 					}
-					else
-					{
-						//TODO error?
-					}
+					
+//					//divide the tags
+//					NdefMessage ndefMessage = NdefMessage.createNdefMessageObject(newValue);
+//					if(ndefMessage == null)
+//					{
+//						detail.setText("No NdefMessage, other way: " + newValue);
+//					}
+//					else
+//					{
+//						//TODO error?
+//					}
 				}
 			}
 		};

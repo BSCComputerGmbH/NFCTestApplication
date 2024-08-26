@@ -22,12 +22,15 @@ public enum ContentTags
 	NdefRecord_type("<ndefrecord#type>", "</ndefrecord#type>"),
 	NdefRecord_payload("<ndefrecord#payload>", "</ndefrecord#payload>"),
 	NdefRecord_mimeType("<ndefrecord#mimeType>", "</ndefrecord#mimeType>"),
+	//optional tags for the response, if user send request to nfc
+	NdefRecord_response_content("<ndefrecord#response_content>", "</ndefrecord#response_content>"),
+	NdefRecord_respone_error("<ndefrecord#response_error>", "</ndefrecord#response_error>"),
 
-
+	//request with no bidirectional messaging with the nfc
 	SimpleRequestCall("<simpleRequestCall>", "</simpleRequestCall>"),
-	
+	//request with call a sequence of request to the nfc
 	SequenceRequestCall("<sequenceRequestCall>", "</sequenceRequestCall>"),
-	
+	//use, if sequence request calls
 	Request("<request>", "</request>"),
 	Response("<response>", "</response>"),
 	

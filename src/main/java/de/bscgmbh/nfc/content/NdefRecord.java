@@ -19,6 +19,12 @@ public class NdefRecord
 	//clear string (utf-8) after received message
 	private String mimeType ="";
 	
+	//if response was filled
+	private String response_content = "";
+	
+	//if response thrown an error
+	private String response_error = "";
+	
 
 	public void setMimeType(String mimeType) {
 		this.mimeType = mimeType;
@@ -39,6 +45,15 @@ public class NdefRecord
 	public void setTyped(String typed) {
 		this.typed = typed;
 	}
+
+	private void setResponseContent(String response_content) {
+		this.response_content = response_content;
+	}
+	
+	private void setResponseError(String response_error) {
+		this.response_error = response_error;
+	}
+	
 	
 	@Override
 	public String toString()
@@ -65,10 +80,25 @@ public class NdefRecord
 			sb.append(payload);
 		}
 		
-		
+		sb.append(" content: ");
+		if(isResponseContentFilled())
+		{
+			sb.append(response_content);
+		}
+		else
+		{
+			sb.append(response_error);
+		}
 		return sb.toString();
 	}
 	
+
+	private boolean isResponseContentFilled() 
+	{
+		if(response_content != null && response_content.length() > 0)
+			return true;
+		return false;
+	}
 
 	public static NdefRecord createNdefRecordObject(List<GenericPairVO<ContentTags, String>> genpairList) 
 	{
@@ -93,15 +123,17 @@ public class NdefRecord
 				case NdefRecord_mimeType:
 					ndefRecord.setMimeType(genpairList.get(i).getRight());
 					break;
+				case NdefRecord_response_content:
+					ndefRecord.setResponseContent(genpairList.get(i).getRight());
+					break;
+				case NdefRecord_respone_error:
+					ndefRecord.setResponseError(genpairList.get(i).getRight());
+					break;
 			}
-			
-			
-			
-			
-			
 		}
 		return ndefRecord;
 	}
+
 
 	public boolean isFilled() 
 	{
