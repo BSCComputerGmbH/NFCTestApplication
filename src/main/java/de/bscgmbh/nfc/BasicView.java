@@ -145,7 +145,6 @@ public class BasicView extends View {
     			sequenceRequest.append(ContentTags.getSequenceEndTag(0));
     			
     			
-    			//TODO vielleicht anstatt start tag doch eher gleich auf sequence mit einer fortlaufenden ID
     			sequenceRequest.append(ContentTags.getSequenceStartTag(1));
     			sequenceRequest.append(ContentTags.Request.getStartTag());
     			sequenceRequest.append("0x3049");

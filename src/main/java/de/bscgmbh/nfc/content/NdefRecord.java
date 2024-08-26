@@ -49,9 +49,18 @@ public class NdefRecord
 	private void setResponseContent(String response_content) {
 		this.response_content = response_content;
 	}
-	
+
 	private void setResponseError(String response_error) {
 		this.response_error = response_error;
+	}
+	
+	public String getResponse_Content(){
+		return this.response_content;
+	}
+	
+	
+	public String getResponse_Error(){
+		return this.response_error;
 	}
 	
 	
