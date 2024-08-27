@@ -10,7 +10,11 @@ public abstract class AResponse<T>
 		this.expectedResponseString = expectedResponseString;
 	}
 
-
+	/**
+	 * check the received response from sensor with the expected response.
+	 * @param responseFromSensor
+	 * @return
+	 */
 	public abstract boolean isExpectedResponse(T responseFromSensor);
 	
 	/**
