@@ -53,39 +53,29 @@ public class BasicView extends View {
 					{
 						//TODO error?
 					}
+					
+					//Clear the value at the service
+					NfcService.create().ifPresent(service -> {
+						service.getResultObject().set("");
+					});
 				}
 			}
     	};
     	
-    	ChangeListener<String> sequenceRequestListener = new ChangeListener<String>() {
-
-			@Override
-			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) 
-			{
-				System.out.println("NFCServiceApplication#second: " + newValue);
-				//got the new result
-				if(newValue != null && !newValue.equals(""))
-				{
-					NdefMessage ndefMessage = NdefMessage.createNdefMessageObject(newValue);
-					if(ndefMessage != null)
-					{
-						detail.setText(ndefMessage.toString());
-					}
-				}
-			}
-		};
+    	//One listener to get the received nfc content 
+    	NfcService.create().ifPresent(service -> {
+    		service.getResultObject().addListener(simpleRequestListener);
+    		
+    	});
     	
-    	
-    	
-    	
-    
-    	
-        Label label = new Label("Hello JavaFX World!");
+        Label label = new Label("Example NFC Request");
 
         Button button = new Button("Simple request call");
         button.setGraphic(new Icon(MaterialDesignIcon.LANGUAGE));
         button.setOnAction(e -> {
         	
+        	//clear main content view
+        	detail.setText("");
         	
         	StringBuilder sb = new StringBuilder();
         	sb.append("NFCService   isEmpty? " + NfcService.create().isEmpty());
@@ -93,15 +83,9 @@ public class BasicView extends View {
         	label.setText(sb.toString());
         	
         	NfcService.create().ifPresent(service -> {
-        		//TODO remove from old
-        		service.getResultObject().removeListener(sequenceRequestListener);
-        		service.getResultObject().addListener(simpleRequestListener);
         		service.doConnect(ContentTags.SimpleRequestCall.getStartTag() + ContentTags.SimpleRequestCall.getEndTag());
         	
         	});
-        
-        
-        
         
         });
         
@@ -109,6 +93,11 @@ public class BasicView extends View {
         sequenceButton.setGraphic(new Icon(MaterialDesignIcon.LANGUAGE));
         sequenceButton.setOnAction(event -> 
         {
+        	
+        	
+        	//clear main content view
+        	detail.setText("");
+        	
         	StringBuilder sb = new StringBuilder();
         	sb.append("NFCService   isEmpty? " + NfcService.create().isEmpty());
         	sb.append("\n");
@@ -116,13 +105,6 @@ public class BasicView extends View {
         	
         	
         	NfcService.create().ifPresent(service -> {
-        		
-        		//TODO remove listener
-        		service.getResultObject().removeListener(simpleRequestListener);
-        		
-    			service.getResultObject().addListener(sequenceRequestListener);
-        		
-        		
         		//test message to send to the Sensor
         		StringBuilder sequenceRequest = new StringBuilder();
     			sequenceRequest.append(ContentTags.SequenceRequestCall.getStartTag());
@@ -163,11 +145,6 @@ public class BasicView extends View {
     			service.doConnect(sequenceRequest.toString());
     	
         	});
-        	
-        	
-        	
-        	
-        	
         });
         
         VBox controls = new VBox(15.0, label, button, sequenceButton, detail);
@@ -183,6 +160,7 @@ public class BasicView extends View {
         appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> System.out.println("Search")));
     }
     
+    /* TODO raus
     public static void main(String[] args)
     {
     	StringBuilder sequenceRequest = new StringBuilder();
@@ -214,6 +192,6 @@ public class BasicView extends View {
 		
 		sequenceRequest.append(ContentTags.SequenceRequestCall.getEndTag());
 		System.out.println("sequenceRequest " + sequenceRequest.toString());
-    }
+    }*/
     
 }
