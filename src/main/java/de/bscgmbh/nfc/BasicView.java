@@ -117,11 +117,11 @@ public class BasicView extends View {
     			
     			sequenceRequest.append(ContentTags.getSequenceStartTag(0));
     			sequenceRequest.append(ContentTags.Request.getStartTag());
-    			//wass gesendet wird
+    			//Authorization with pin code
     			sequenceRequest.append("0x1B0000E500");
     			sequenceRequest.append(ContentTags.Request.getEndTag());
     			sequenceRequest.append(ContentTags.Response.getStartTag());
-    			//was erwartet wird
+    			//expected result from multi sensor module
     			sequenceRequest.append("0x0000");
     			sequenceRequest.append(ContentTags.Response.getEndTag());
     			sequenceRequest.append(ContentTags.getSequenceEndTag(0));
@@ -129,11 +129,12 @@ public class BasicView extends View {
     			
     			sequenceRequest.append(ContentTags.getSequenceStartTag(1));
     			sequenceRequest.append(ContentTags.Request.getStartTag());
+    			//request a specfic register from the multi sensor module 
     			sequenceRequest.append("0x3049");
     			sequenceRequest.append(ContentTags.Request.getEndTag());
     			
     			sequenceRequest.append(ContentTags.Response.getStartTag());
-    			//empty alles was kommt wird entgegen genommen.
+    			//empty expected response, the result of the multi sensor module will be setted at the result object
     			sequenceRequest.append("");
     			sequenceRequest.append(ContentTags.Response.getEndTag());
     			
