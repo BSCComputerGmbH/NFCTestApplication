@@ -101,13 +101,11 @@
      	<url>https://oss.sonatype.org/content/repositories/snapshots</url> 
  	    </repository> 
         <repository>
-         <id>local-repository</id>
-         <name>repository</name>
-        <!--   <url>file://${project.basedir}/lib</url> -->
-        <!-- attach extended with the nfc as locally build -->
-        <url>file:///home/mg/.m2/repository/</url>
-        
-        </repository>
+	        <id>local-repository</id>
+	        <name>repository</name>
+	        <!-- attach extended with the nfc as locally build -->
+	        <url>file:///home/mg/.m2/repository/</url>
+	    </repository>
     </repositories>
 
     <build>
