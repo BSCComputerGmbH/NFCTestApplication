@@ -54,8 +54,11 @@ You can find the example code in the ActionEvent of the sequenceButton in the cl
 The complete request is completed with the end tag of SequenceRequestCall.
 #### Showcase
 The following link leads to a video that shows the TestNFCApplication in action:
+
 https://www.youtube.com/watch?v=qI6vgbOD6B8
+
 The second link shows a video about a real use case:
+
 https://www.youtube.com/watch?v=QWiRFbUaCiU
 
 
